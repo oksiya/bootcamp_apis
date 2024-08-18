@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Widgets</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div class="container mx-auto p-6">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-600">Bootcamp Widgets</h1>
+            <p class="text-lg text-gray-600">Interactive widgets using Express APIs</p>
+        </header>
+
+        <!-- Widgets Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Words Widget -->
+            <div class="p-6 bg-white rounded-lg shadow-lg" x-data="bootcampWidgets()">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Words Widget</h2>
+                <form @submit.prevent="fetchWordStats" class="space-y-4">
+                    <input x-model="sentence" type="text" placeholder="Enter a sentence" class="border p-2 rounded w-full" required>
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
+                        Analyze Sentence
+                    </button>
+                </form>
+                <div x-show="wordStats" class="mt-6">
+                    <p><strong>Longest Word:</strong> <span x-text="wordStats.longestWord"></span></p>
+                    <p><strong>Shortest Word:</strong> <span x-text="wordStats.shortestWord"></span></p>
+                    <p><strong>Sum of Word Lengths:</strong> <span x-text="wordStats.sum"></span></p>
+                </div>
+            </div>
+
+            <!-- Phone Bill Widget -->
+            <div class="p-6 bg-white rounded-lg shadow-lg" x-data="bootcampWidgets()">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Phone Bill Widget</h2>
+                <form @submit.prevent="calculatePhoneBill" class="space-y-4">
+                    <input x-model="bill" type="text" placeholder="Enter bill commands (e.g., call,sms,call)" class="border p-2 rounded w-full" required>
+                    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+                        Calculate Total Bill
+                    </button>
+                </form>
+                <div x-show="phoneBillTotal" class="mt-6">
+                    <p><strong>Total Bill:</strong> R<span x-text="phoneBillTotal"></span></p>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold text-gray-600 mb-2">Adjust Prices</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <input x-model="callPrice" type="number" step="0.01" placeholder="Call Price" class="border p-2 rounded w-full">
+                            <button @click="setPrice('call')" class="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300 mt-2">
+                                Set Call Price
+                            </button>
+                        </div>
+                        <div>
+                            <input x-model="smsPrice" type="number" step="0.01" placeholder="SMS Price" class="border p-2 rounded w-full">
+                            <button @click="setPrice('sms')" class="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300 mt-2">
+                                Set SMS Price
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airtime Widget -->
+            <div class="p-6 bg-white rounded-lg shadow-lg" x-data="bootcampWidgets()">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Airtime Widget</h2>
+                <form @submit.prevent="checkAirtime" class="space-y-4">
+                    <input x-model="usage" type="text" placeholder="Enter usage (e.g., call,sms,call)" class="border p-2 rounded w-full" required>
+                    <input x-model="available" type="number" placeholder="Available airtime (e.g., 54)" class="border p-2 rounded w-full" required>
+                    <button type="submit" class="bg-purple-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-purple-600 transition duration-300">
+                        Check Airtime
+                    </button>
+                </form>
+                <div x-show="airtimeResult" class="mt-6">
+                    <p><strong>Remaining Airtime:</strong> R<span x-text="airtimeResult"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./widgets.js"></script>
+</body>
+</html>

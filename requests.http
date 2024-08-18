@@ -1,0 +1,39 @@
+### Test Words Widget API
+GET http://localhost:3000/api/word_game?sentence=I%20love%20coding
+
+###
+
+### Test Total Phone Bill API - POST /api/phonebill/total
+POST http://localhost:3000/api/phonebill/total
+Content-Type: application/json
+
+{
+  "bill": "call,sms,call"
+}
+
+###
+
+### Test Total Phone Bill API - GET /api/phonebill/prices
+GET http://localhost:3000/api/phonebill/prices
+
+###
+
+### Test Total Phone Bill API - POST /api/phonebill/price
+POST http://localhost:3000/api/phonebill/price
+Content-Type: application/json
+
+{
+  "type": "call",
+  "price": 3.00
+}
+
+###
+
+### Test Enough Airtime API - POST /api/enough
+POST http://localhost:3000/api/enough
+Content-Type: application/json
+
+{
+  "usage": "call,sms,call",
+  "available": 54
+}
